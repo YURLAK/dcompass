@@ -3,7 +3,7 @@
 ![Automated build](https://github.com/LEXUGE/dcompass/workflows/Build%20dcompass%20on%20various%20targets/badge.svg)
 [![Join telegram channel](https://badges.aleen42.com/src/telegram.svg)](https://t.me/dcompass_channel)  
 A high-performance programmable DNS component.  
-[中文版（未更新）](README-CN.md)
+[中文版](README-CN.md)
 
 # Features
 
