@@ -1,7 +1,7 @@
 # dcompass
 ![自动构建](https://github.com/LEXUGE/dcompass/workflows/Build%20dcompass%20on%20various%20targets/badge.svg)  
 一个高性能的 DNS 服务器，支持插件式路由规则，DoT 以及 DoH  
-[中文版](README-CN.md)
+[英文版](README.md)
 
 # Why Do You Ever Need It
 如果你对 [SmartDNS](https://github.com/pymumu/smartdns) 或 [Overture](https://github.com/shawn1m/overture) 的逻辑或速度不满，不妨尝试一下 `dcompass`
@@ -30,9 +30,8 @@ dcompass -c path/to/config.json # 或 YAML 配置文件
 1. Github Action 会自动每天按照 main branch 和最新的 maxmind GeoIP 数据库对一些平台进行编译并上传到 [release page](https://github.com/LEXUGE/dcompass/releases)。如果是 Raspberry Pi 用户，建议尝试 `armv7-unknown-linux-musleabihf`, `armv5te-unknown-linux-musleabi`, `aarch64-unknown-linux-musl`。每个 target 都带有 `full`, `cn`, `min` 三个版本， `full` 包含 maxmind GeoIP2 database, `cn` 包含 GeoIP2-CN databse （只含有中国 IP）， `min` 不内置数据库。
 2. NixOS 打包文件在[这里](https://github.com/icebox-nix/netkit.nix). 同时，对于 NixOS 用户，我们提供了一个包含 systemd 服务的 NixOS module 来方便用户配置。
 
-# 配置（待翻译）
-**有关最新资料，请参阅最新英文版本。**
-配置文件包含不同的 fields
+# 配置
+**有关最新资料，请参阅最新英文版本。** 配置文件包含不同的 fields。
 - `cache_size`: DNS Cache 的大小。更大的大小意味着更高的缓存容量(使用LRU算法作为后端)。
 - `verbosity`: Log 等级.值可能为`trace`, `debug`, `info`, `warn`, `error`, `off`。
 - `address`: 监听的地址。
