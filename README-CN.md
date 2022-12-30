@@ -34,27 +34,27 @@ dcompass -c path/to/config.json # 或 YAML 配置文件
 **有关最新资料，请参阅最新英文版本。**
 配置文件包含不同的 fields
 - `cache_size`: DNS Cache 的大小。更大的大小意味着更高的缓存容量(使用LRU算法作为后端)。
-- `verbosity`: Log 等级.值可能为trace, debug, info, warn, error, off。
+- `verbosity`: Log 等级.值可能为`trace`, `debug`, `info`, `warn`, `error`, `off`。
 - `address`: 监听的地址。
-- `table`:由“规则”块组成的路由表。该表不能为空，而且应该包含一个名为“start”的规则。每条规则包含“tag”、“if”、“then”和“else值。后两个应该是' (action, next) '形式的元组，这意味着首先执行操作，然后使用指定的标记转到下一个规则。
-- `upstreams`: 一组上游。' timeout '是距离timeout的秒数，它对方法' Hybrid '(默认为5)不起作用。“tag”是上游的名称。' methods '是每个上游的方法。
+- `table`:由“规则”块组成的路由表。该表不能为空，而且应该包含一个名为`start`的规则。每条规则包含`tag`、`if`、`then`和`else`值。后两个应该是`(action,next)`形式的元组，这意味着首先执行操作，然后使用指定的标记转到下一个规则。
+- `upstreams`: 一组上游。`timeout`是距离timeout的秒数，它对方法`Hybrid`(默认为5)不起作用。`tag`是上游的名称。`methods`是每个上游的方法。
 
 不同的进程:
 - `skip`: 什么也不做。
-- `disable`: 使用SOA消息设置响应以限制进一步查询。它通常与' qtype '匹配器一起使用，以禁用某些类型的查询。
+- `disable`: 使用SOA消息设置响应以限制进一步查询。它通常与`qtype`匹配器一起使用，以禁用某些类型的查询。
 - `query(标签)`: 通过上游发送带有指定标签的查询。
 
 不同的匹配器: (还将有更多的匹配器，包括`cidr`)
 - `any`: 匹配任何东西。
 - `domain(文件路径列表)`: 匹配指定域列表中的域。
 - `qtype(记录类型列表)`: 匹配指定的记录类型。
-- `geoip(位置: resp或src, 代码: :国家代码列表, 路径:MMDB数据库文件的可选路径)`: 如果有一个或多个' A '或' AAAA '记录处于当前状态，并且其中的第一个记录在列表中指定了国家代码，那么它就匹配，否则总是不匹配。
+- `geoip(位置: resp或src, 代码: :国家代码列表, 路径:MMDB数据库文件的可选路径)`: 如果有一个或多个`A`或`AAAA`记录处于当前状态，并且其中的第一个记录在列表中指定了国家代码，那么它就匹配，否则总是不匹配。
 
 不同的查询方式:
-- `https`: DNS覆盖HTTPS查询方法。' no_sni '表示不发送SNI(用于对抗审查)。' name '是远程服务器的TLS认证名称。' addr '是远程服务器地址。
-- `tls`: DNS覆盖TLS查询方法。' no_sni '表示不发送SNI(用于对抗审查)。' name '是远程服务器的TLS认证名称。' addr '是远程服务器地址。
-- `udp`:典型的UDP查询方法。' addr '是远程服务器地址。
-- `hybrid`: 在多个上游一起运行。取值为上游标签的集合。注意，你可以在集合中包含另一个' hybrid '，只要它们不形成链依赖关系，这是被禁止的，并且会被' dcompass '提前检测到。
+- `https`: DNS覆盖HTTPS查询方法。`no_sni`表示不发送SNI(有助于对抗审查)。`name`是远程服务器的TLS认证名称。`addr`是远程服务器地址。
+- `tls`: DNS覆盖TLS查询方法。`no_sni`表示不发送SNI(用于对抗审查)。`name`是远程服务器的TLS认证名称。`addr`是远程服务器地址。
+- `udp`:典型的UDP查询方法。`addr`是远程服务器地址。
+- `hybrid`: 在多个上游一起运行。取值为上游标签的集合。注意，你可以在集合中包含另一个`hybrid`，只要它们不形成链依赖关系，这是被禁止的，并且会被`dcompass`提前检测到。
 
 一个无需任何外部文件的防污染分流且开箱及用的配置文件 [example.yaml](configs/example.yaml)（只支持 `full` 和 `cn`， `min` 如需使用此配置需要自带 GeoIP database）。  
 
